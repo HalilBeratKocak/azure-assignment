@@ -1,0 +1,6 @@
+{
+  "name": "functionapp",
+  "version": "1.0.0",
+  "description": "Azure Function (Node.js) with an HTTP-triggered 'hello' endpoint.",
+  "main": "hello/index.js"
+}
