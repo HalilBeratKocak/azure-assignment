@@ -1,22 +1,19 @@
 # Azure Cloud Deployment Assignment
 
-A small Python project that demonstrates deploying two services to Microsoft Azure
-straight from GitHub, using an automated GitHub Actions pipeline.
+A small project that demonstrates deploying two services to Microsoft Azure,
+with the web app deployed automatically from GitHub using a GitHub Actions pipeline.
 
 ## What the application does
 
 The project has two independent parts:
 
-1. **Web App** (`app.py`) — a Flask website hosted on **Azure App Service**.
-   It serves a single page describing the project. This is the "Web App" you will
-   see in the Azure portal.
+1. **Web App** (`app.py`) — a Python (Flask) website hosted on **Azure App Service**.
+   It serves a single page describing the project. It is connected to this GitHub
+   repository and deployed automatically via **GitHub Actions** on every push to `main`.
 
-2. **Azure Function** (`functionapp/`) — a serverless HTTP function hosted on an
-   **Azure Function App**. It exposes one endpoint, `/api/hello`, which returns a
-   greeting (optionally personalized with a `?name=` parameter).
-
-Both services are deployed automatically: whenever code is pushed to the `main`
-branch on GitHub, a **GitHub Actions** workflow builds and publishes it to Azure.
+2. **Azure Function** (`functionapp/`) — a serverless, HTTP-triggered function
+   (Node.js) hosted on an **Azure Function App**. It exposes one endpoint, `hello`,
+   which returns a greeting (optionally personalized with a `?name=` parameter).
 
 ## Project structure
 
@@ -24,10 +21,12 @@ branch on GitHub, a **GitHub Actions** workflow builds and publishes it to Azure
 azure-assignment/
 ├── app.py              # Flask web app  -> Azure App Service (Web App)
 ├── requirements.txt    # Web app dependencies (Flask, gunicorn)
-├── functionapp/        # Azure Function -> Azure Function App
-│   ├── function_app.py
+├── functionapp/        # Azure Function -> Azure Function App (Node.js)
 │   ├── host.json
-│   └── requirements.txt
+│   ├── package.json
+│   └── hello/
+│       ├── function.json
+│       └── index.js
 └── README.md
 ```
 
